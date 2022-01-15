@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ingreso-egreso-app-5bd59": {
+      "hosting": {
+        "ingreso-egreso": [
+          "ingreso-egreso-app-5bd59"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ingreso-egreso-app-5bd59"
+  }
+}
