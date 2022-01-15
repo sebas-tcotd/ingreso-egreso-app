@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
+  loading: boolean = false;
   uiSubscription!: Subscription;
 
   constructor(
@@ -31,7 +32,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
     });
 
-    this.uiSubscription = this.store.select('ui').subscribe();
+    this.uiSubscription = this.store
+      .select('ui')
+      .subscribe((ui) => (this.loading = ui.isLoading));
   }
 
   ngOnDestroy(): void {
