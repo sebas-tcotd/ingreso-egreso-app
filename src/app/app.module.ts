@@ -11,6 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
 
+import { NgChartsModule } from 'ng2-charts';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -22,6 +24,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { IncomesOrderPipe } from './pipes/incomes-order.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
+    IncomesOrderPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    NgChartsModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

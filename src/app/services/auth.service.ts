@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
+
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { first, map } from 'rxjs/operators';
+
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
 import { Usuario } from '../models/usuario.model';
+
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import * as authActions from '../auth/auth.actions';
-import { Subscription } from 'rxjs';
+import * as incomeExpenditureActions from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userSubscription!: Subscription;
+  private _user!: Usuario | null;
+
+  get user() {
+    return this._user;
+  }
 
   constructor(
     public auth: AngularFireAuth,
@@ -27,13 +37,15 @@ export class AuthService {
           .doc(`${FUser.uid}/user`)
           .valueChanges()
           .subscribe((firestoreUser: any) => {
-            console.log('Existe usuario!');
             const user = Usuario.fromFirebase(firestoreUser);
+            this._user = user;
             this.store.dispatch(authActions.setUser({ user }));
           });
       } else {
+        this._user = null;
         this.userSubscription.unsubscribe();
         this.store.dispatch(authActions.unsetUser());
+        this.store.dispatch(incomeExpenditureActions.unsetItems());
       }
     });
   }

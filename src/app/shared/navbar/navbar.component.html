@@ -3,13 +3,7 @@
   class="navbar default-layout col-sm-12 col-12 p-0 fixed-top d-flex flex-row"
 >
   <div
-    class="
-      text-center
-      navbar-brand-wrapper
-      d-flex
-      align-items-top
-      justify-content-center
-    "
+    class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center"
   >
     <a class="navbar-brand brand-logo">
       <img src="assets/images/logo.svg" alt="logo" />
@@ -29,7 +23,7 @@
           data-toggle="dropdown"
           aria-expanded="false"
         >
-          <span class="profile-text">Hello, Richard V.Welsh !</span>
+          <span class="profile-text">Hello, {{ user?.name }}!</span>
           <img
             class="img-xs rounded-circle"
             src="assets/images/faces/face1.jpg"
