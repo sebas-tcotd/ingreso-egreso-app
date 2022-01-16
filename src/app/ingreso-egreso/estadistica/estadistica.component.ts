@@ -6,6 +6,7 @@ import { ChartData } from 'chart.js';
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
+import { AppStateWithIncome } from '../ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-estadistica',
@@ -25,7 +26,7 @@ export class EstadisticaComponent implements OnInit {
     datasets: [{ data: [] }],
   };
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppStateWithIncome>) {}
 
   ngOnInit(): void {
     this.store
